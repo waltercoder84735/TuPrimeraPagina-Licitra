@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Blog - FinanzasClaras{% endblock %}
+
+{% block contenido %}
+    <h1>Blog de Consejos Financieros</h1>
+
+    {% for articulo in articulos %}
+        <h2>{{ articulo.titulo }}</h2>
+        <p>{{ articulo.contenido }}</p>
+        <p>Tipo: {{ articulo.tipo }}</p>
+        <p>Fecha: {{ articulo.fecha_publicacion }}</p>
+        <hr>
+    {% empty %}
+        <p>No hay artículos publicados todavía.</p>
+    {% endfor %}
+{% endblock %}

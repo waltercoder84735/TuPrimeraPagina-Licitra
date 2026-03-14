@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}FinanzasClaras{% endblock %}</title>
+</head>
+<body>
+
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a> |
+        <a href="{% url 'servicios' %}">Servicios</a> |
+        <a href="{% url 'blog' %}">Blog</a> |
+        <a href="{% url 'tutoriales' %}">Tutoriales</a> |
+        <a href="{% url 'plantillas' %}">Plantillas</a> |
+        <a href="{% url 'contacto' %}">Contacto</a>
+    </nav>
+
+    <hr>
+
+    {% block contenido %}{% endblock %}
+
+    <hr>
+    <footer>
+        <p>FinanzasClaras &copy; 2025 - Consultoría Financiera</p>
+    </footer>
+
+</body>
+</html>

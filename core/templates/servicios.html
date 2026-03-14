@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Servicios - FinanzasClaras{% endblock %}
+
+{% block contenido %}
+    <h1>Nuestros Servicios</h1>
+
+    {% for servicio in servicios %}
+        <h2>{{ servicio.nombre }}</h2>
+        <p>{{ servicio.descripcion }}</p>
+        <p>Tipo: {{ servicio.tipo }}</p>
+        <p>Precio de referencia: ${{ servicio.precio_referencia }}</p>
+        <hr>
+    {% empty %}
+        <p>No hay servicios cargados todavía.</p>
+    {% endfor %}
+{% endblock %}

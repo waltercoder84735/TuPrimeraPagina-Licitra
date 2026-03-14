@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Plantillas - FinanzasClaras{% endblock %}
+
+{% block contenido %}
+    <h1>Plantillas Gratuitas</h1>
+
+    {% for plantilla in plantillas %}
+        <h2>{{ plantilla.nombre }}</h2>
+        <p>{{ plantilla.descripcion }}</p>
+        <p>Tipo: {{ plantilla.tipo }}</p>
+        <a href="{{ plantilla.url_descarga }}" target="_blank">Descargar plantilla</a>
+        <hr>
+    {% empty %}
+        <p>No hay plantillas disponibles todavía.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Tutoriales - FinanzasClaras{% endblock %}
+
+{% block contenido %}
+    <h1>Tutoriales de Finanzas</h1>
+
+    {% for tutorial in tutoriales %}
+        <h2>{{ tutorial.nombre }}</h2>
+        <p>{{ tutorial.descripcion }}</p>
+        <p>Tipo: {{ tutorial.tipo }}</p>
+        <a href="{{ tutorial.url_video }}" target="_blank">Ver video</a>
+        <hr>
+    {% empty %}
+        <p>No hay tutoriales cargados todavía.</p>
+    {% endfor %}
+{% endblock %}
