@@ -1,23 +1,48 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block titulo %}Tutoriales - FinanzasClaras{% endblock %}
+{% block titulo %}Tutoriales - Finanzas Claras{% endblock %}
 
 {% block contenido %}
-    <h1>Tutoriales de Finanzas</h1>
 
-    {% for tutorial in tutoriales %}
-        <h2>{{ tutorial.nombre }}</h2>
-        <p>{{ tutorial.descripcion }}</p>
-        <p>Tipo: {{ tutorial.tipo }}</p>
-        <a href="{{ tutorial.url_video }}" target="_blank">Ver video</a>
-        <hr>
-    {% empty %}
-        <p>No hay tutoriales cargados todavía.</p>
-    {% endfor %}
-<h2>Agregar Tutorial</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
+    <!-- Banner de bienvenida -->
+    <div class="d-flex align-items-center justify-content-center mb-5 mt-3">
+        <img src="{% static 'img/walter.jpeg' %}" class="rounded-circle me-3" style="width:100px; height:100px; object-fit:cover;">
+        <div class="bg-dark text-white p-3 rounded" style="max-width:600px; border-radius: 20px 20px 20px 0px !important;">
+            <p class="mb-0">Te dejamos algunos <strong>tutoriales</strong> para comenzar con tus finanzas.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Tutoriales de Finanzas</h2>
+
+    <div class="row">
+        {% for tutorial in tutoriales %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ tutorial.nombre }}</h5>
+                    <p class="card-text">{{ tutorial.descripcion }}</p>
+                    <span class="badge bg-dark">{{ tutorial.tipo }}</span>
+                    <a href="{{ tutorial.url_video }}" target="_blank" class="btn btn-dark mt-2 w-100">Ver tutorial</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-center">No hay tutoriales cargados todavía.</p>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <h4 class="mt-4">Agregar Tutorial</h4>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="mb-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark w-100">Guardar</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

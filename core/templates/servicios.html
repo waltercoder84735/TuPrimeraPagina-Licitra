@@ -1,24 +1,48 @@
-
 {% extends 'base.html' %}
+{% load static %}
 
-{% block titulo %}Servicios - FinanzasClaras{% endblock %}
+{% block titulo %}Servicios - Finanzas Claras{% endblock %}
 
 {% block contenido %}
-    <h1>Nuestros Servicios</h1>
 
-    {% for servicio in servicios %}
-        <h2>{{ servicio.nombre }}</h2>
-        <p>{{ servicio.descripcion }}</p>
-        <p>Tipo: {{ servicio.tipo }}</p>
-        <p>Precio de referencia: ${{ servicio.precio_referencia }}</p>
-        <hr>
-    {% empty %}
-        <p>No hay servicios cargados todavía.</p>
-    {% endfor %}
- <h2>Agregar Servicio</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>    
+    <!-- Banner de bienvenida -->
+    <div class="d-flex align-items-center justify-content-center mb-5 mt-3">
+        <img src="{% static 'img/walter.jpeg' %}" class="rounded-circle me-3" style="width:100px; height:100px; object-fit:cover;">
+        <div class="bg-dark text-white p-3 rounded" style="max-width:600px; border-radius: 20px 20px 20px 0px !important;">
+            <p class="mb-0">Te ayudamos a organizar tus finanzas con nuestros <strong>servicios personalizados</strong>.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Nuestros Servicios</h2>
+
+    <div class="row">
+        {% for servicio in servicios %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ servicio.nombre }}</h5>
+                    <p class="card-text">{{ servicio.descripcion }}</p>
+                    <span class="badge bg-dark">{{ servicio.tipo }}</span>
+                    <p class="mt-2"><strong>Precio de referencia:</strong> ${{ servicio.precio_referencia }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="text-center">No hay servicios cargados todavía.</p>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <h4 class="mt-4">Agregar Servicio</h4>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post" class="mb-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark w-100">Guardar</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
