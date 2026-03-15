@@ -1,9 +1,21 @@
 from django.shortcuts import render
 from .models import Servicio, Articulo, Cliente, Tutorial, Plantilla
-from .forms import ServicioForm, ArticuloForm, ClienteForm, TutorialForm, PlantillaForm, BusquedaClienteForm
+from .forms import ServicioForm, ArticuloForm, ClienteForm, TutorialForm, PlantillaForm, BusquedaClienteForm, BusquedaGeneralForm
 
 def inicio(request):
-    return render(request, 'inicio.html')
+    form = BusquedaGeneralForm(request.GET or None)
+    resultados = []
+    categoria = None
+    if form.is_valid():
+        categoria = form.cleaned_data['categoria']
+        busqueda = form.cleaned_data['busqueda']
+        if categoria == 'servicios':
+            resultados = Servicio.objects.filter(nombre__icontains=busqueda)
+        elif categoria == 'tutoriales':
+            resultados = Tutorial.objects.filter(nombre__icontains=busqueda)
+        elif categoria == 'plantillas':
+            resultados = Plantilla.objects.filter(nombre__icontains=busqueda)
+    return render(request, 'inicio.html', {'form': form, 'resultados': resultados, 'categoria': categoria})
 
 def servicios(request):
     lista = Servicio.objects.all()

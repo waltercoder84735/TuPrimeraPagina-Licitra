@@ -12,4 +12,23 @@
         <li>Gestión de finanzas personales</li>
         <li>Tutoriales y plantillas gratuitas</li>
     </ul>
+
+    <hr>
+
+    <h2>¿En qué podemos ayudarte?</h2>
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if resultados %}
+        <h3>Resultados:</h3>
+        {% for item in resultados %}
+            <p>{{ item.nombre }} - {{ item.descripcion }}</p>
+            <hr>
+        {% endfor %}
+   {% elif request.GET.busqueda %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+
 {% endblock %}

@@ -28,3 +28,12 @@ class PlantillaForm(forms.ModelForm):
 
 class BusquedaClienteForm(forms.Form):
     nombre = forms.CharField(label='Buscar cliente por nombre', max_length=100)
+
+class BusquedaGeneralForm(forms.Form):
+    CATEGORIAS = [
+        ('servicios', 'Servicios'),
+        ('tutoriales', 'Tutoriales'),
+        ('plantillas', 'Plantillas'),
+    ]
+    categoria = forms.ChoiceField(choices=CATEGORIAS, label='¿En qué podemos ayudarte?')
+    busqueda = forms.CharField(label='Nombre', max_length=100)
