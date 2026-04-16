@@ -15,14 +15,23 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'servicios' %}">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'tutoriales' %}">Tutoriales</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'plantillas' %}">Plantillas</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'buscar_cliente' %}">Buscar Cliente</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'perfil' %}">Mi perfil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'buscar_cliente' %}">Buscar Cliente</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Ingresar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrarse</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

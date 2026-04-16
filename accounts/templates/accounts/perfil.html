@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Perfil - Finanzas Claras{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-body text-center">
+                {% if perfil.avatar %}
+                    <img src="{{ perfil.avatar.url }}" class="rounded-circle mb-3" style="width:120px; height:120px; object-fit:cover;">
+                {% else %}
+                    <img src="https://via.placeholder.com/120" class="rounded-circle mb-3">
+                {% endif %}
+                <h4>{{ perfil.usuario.username }}</h4>
+                <p><strong>Nombre:</strong> {{ perfil.usuario.first_name }}</p>
+                <p><strong>Apellido:</strong> {{ perfil.usuario.last_name }}</p>
+                <p><strong>Email:</strong> {{ perfil.usuario.email }}</p>
+                {% if perfil.biografia %}
+                    <p><strong>Biografía:</strong> {{ perfil.biografia }}</p>
+                {% endif %}
+                {% if perfil.fecha_nacimiento %}
+                    <p><strong>Fecha de nacimiento:</strong> {{ perfil.fecha_nacimiento }}</p>
+                {% endif %}
+                <a href="{% url 'editar_perfil' %}" class="btn btn-dark mt-3">Editar perfil</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
