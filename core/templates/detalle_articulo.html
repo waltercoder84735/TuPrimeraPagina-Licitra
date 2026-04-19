@@ -14,7 +14,7 @@
                 <h2 class="card-title">{{ articulo.titulo }}</h2>
                 <span class="badge bg-dark">{{ articulo.tipo }}</span>
                 <p class="text-muted mt-2"><small>{{ articulo.fecha_publicacion }}</small></p>
-                <p class="card-text mt-3">{{ articulo.contenido }}</p>
+                <p class="card-text mt-3">{{ articulo.contenido|linebreaks }}</p>
                 <hr>
                 <a href="{% url 'blog' %}" class="btn btn-dark">Volver al blog</a>
                 {% if request.user.is_authenticated %}
