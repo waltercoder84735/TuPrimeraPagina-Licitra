@@ -5,6 +5,8 @@ from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Perfil
 from .forms import RegistroForm, PerfilForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 class RegistroView(View):
     def get(self, request):
@@ -56,3 +58,16 @@ class EditarPerfilView(LoginRequiredMixin, View):
             form.save()
             return redirect('perfil')
         return render(request, 'accounts/editar_perfil.html', {'form': form})
+    
+class CambiarPasswordView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = PasswordChangeForm(request.user)
+        return render(request, 'accounts/cambiar_password.html', {'form': form})
+    
+    def post(self, request):
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            update_session_auth_hash(request, usuario)
+            return render(request, 'accounts/cambiar_password.html', {'form': form, 'exito': True})
+        return render(request, 'accounts/cambiar_password.html', {'form': form})    
