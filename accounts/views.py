@@ -20,7 +20,7 @@ class RegistroView(View):
             return redirect('inicio')
         return render(request, 'accounts/registro.html', {'form': form})
 
-class LoginView(View):
+class IniciarSesionView(View):
     def get(self, request):
         return render(request, 'accounts/login.html')
     

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Enviar Mensaje - Finanzas Claras{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center mb-4">Enviame un mensaje</h4>
+                {% if exito %}
+                    <div class="alert alert-success">
+                        ¡Mensaje enviado correctamente! Te respondo a la brevedad.
+                    </div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-dark w-100">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
