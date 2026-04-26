@@ -73,5 +73,7 @@ Sin embargo, el editor visual no se renderiza debido a una incompatibilidad cono
 entre django-ckeditor 6.7.3 y Django 6.0.2. El campo funciona correctamente para 
 guardar y mostrar contenido.
 
+## Video: [Ver video en YouTube](https://youtu.be/ZR0xEcWdGEc)
+
 ## Autor
 Walter Licitra
